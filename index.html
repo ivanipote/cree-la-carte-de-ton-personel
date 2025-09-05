@@ -1,4 +1,59 @@
-<!DOCTYPE html>
+<!DOCTYPE html><nav class="site-navigation">
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Confidentialité</a></li>
+    </ul>
+</nav>
+
+<style>
+    .site-navigation {
+        background-color: #f8f9fa;
+        padding: 1rem 0;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .site-navigation ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        flex-wrap: wrap;
+    }
+    
+    .site-navigation li {
+        margin: 0 1rem;
+    }
+    
+    .site-navigation a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+    
+    .site-navigation a:hover {
+        background-color: #e9ecef;
+        color: #0056b3;
+    }
+    
+    /* Style responsive pour mobiles */
+    @media (max-width: 600px) {
+        .site-navigation ul {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .site-navigation li {
+            margin: 0.5rem 0;
+        }
+    }
+</style>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -1210,59 +1265,4 @@
         });
     </script>
 </body>
-</html><nav class="site-navigation">
-    <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="about.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Confidentialité</a></li>
-    </ul>
-</nav>
-
-<style>
-    .site-navigation {
-        background-color: #f8f9fa;
-        padding: 1rem 0;
-        margin-bottom: 2rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    .site-navigation ul {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        margin: 0;
-        padding: 0;
-        flex-wrap: wrap;
-    }
-    
-    .site-navigation li {
-        margin: 0 1rem;
-    }
-    
-    .site-navigation a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-    }
-    
-    .site-navigation a:hover {
-        background-color: #e9ecef;
-        color: #0056b3;
-    }
-    
-    /* Style responsive pour mobiles */
-    @media (max-width: 600px) {
-        .site-navigation ul {
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .site-navigation li {
-            margin: 0.5rem 0;
-        }
-    }
-</style>
+</html>
