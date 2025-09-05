@@ -9,4 +9,4 @@ Disallow: /private/
 
 Allow: /wp-admin/admin-ajax.php
 
-Sitemap: https://www.votresite.com/sitemap.xml
+Sitemap: https://ivanipote.github.io/sitemap.xml
