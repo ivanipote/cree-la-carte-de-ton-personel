@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentification en cours...</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f5f8fa;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Authentification en cours...</h2>
+        <p>Veuillez patienter pendant que nous vous connectons.</p>
+    </div>
 
+    <script>
+        // Fonction pour gérer la réponse de connexion Google
+        function handleCredentialResponse(response) {
+            // Envoyer le token à votre traitement
+            console.log("Token reçu:", response.credential);
+            
+            // Rediriger vers la page d'accueil après connexion
+            window.location.href = "https://ivanipote.github.io";
+        }
+
+        // Initialiser Google Identity Services
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: "ic446b3vjd79iir8bu9ialton3h1of3q.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            
+            // Afficher l'interface de connexion
+            google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"),
+                { theme: "outline", size: "large" } 
+            );
+            
+            // Déclencher automatiquement le flux de connexion
+            google.accounts.id.prompt();
+        };
+    </script>
+    
+    <div id="buttonDiv" style="display: none;"></div>
+</body>
+      </html>
