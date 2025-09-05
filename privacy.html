@@ -217,4 +217,214 @@
         .back-to-top {
             display: block;
             text-align: right;
-            margin-top:
+            margin-top: 30px;
+            color: #4a69bd;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-to-top:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 220px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .privacy-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Bouton pour ouvrir la sidebar -->
+    <button class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Overlay pour le fond obscurci -->
+    <div class="overlay"></div>
+    
+    <!-- Sidebar de navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Navigation</h2>
+            <button class="close-sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul class="sidebar-nav">
+            <li>
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    Accueil
+                </a>
+            </li>
+            <li>
+                <a href="about.html">
+                    <i class="fas fa-info-circle"></i>
+                    À propos
+                </a>
+            </li>
+            <li>
+                <a href="contact.html">
+                    <i class="fas fa-envelope"></i>
+                    Contact
+                </a>
+            </li>
+            <li>
+                <a href="privacy.html">
+                    <i class="fas fa-shield-alt"></i>
+                    Confidentialité
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <p>&copy; 2023 - Création de Carte</p>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Politique de confidentialité</h1>
+            <p class="page-subtitle">Dernière mise à jour: 20 novembre 2023</p>
+        </div>
+        
+        <div class="privacy-content">
+            <div class="privacy-section">
+                <h2>Introduction</h2>
+                <p>Chez Création de Carte, nous accordons une grande importance à la protection de votre vie privée et de vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre service de création de cartes digitales.</p>
+                <p>En utilisant notre site web et nos services, vous acceptez les pratiques décrites dans cette politique de confidentialité.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Informations que nous collectons</h2>
+                <p>Nous collectons les types d'informations suivants :</p>
+                <ul>
+                    <li><strong>Informations que vous nous fournissez :</strong> Lorsque vous créez une carte, nous collectons les informations que vous choisissez d'inclure (nom, coordonnées, liens vers les réseaux sociaux, etc.).</li>
+                    <li><strong>Informations d'utilisation :</strong> Nous collectons des informations sur votre interaction avec notre site, y compris votre adresse IP, le type de navigateur, les pages consultées et la durée de votre visite.</li>
+                    <li><strong>Cookies et technologies similaires :</strong> Nous utilisons des cookies pour améliorer votre expérience utilisateur et analyser l'utilisation de notre site.</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Utilisation de vos informations</h2>
+                <p>Nous utilisons vos informations pour :</p>
+                <ul>
+                    <li>Créer et personnaliser votre carte digitale selon vos préférences</li>
+                    <li>Vous fournir un support client et répondre à vos demandes</li>
+                    <li>Améliorer nos services et développer de nouvelles fonctionnalités</li>
+                    <li>Vous informer des mises à jour importantes ou des changements de nos services</li>
+                    <li>Détecter et prévenir les activités frauduleuses ou abusives</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Partage de vos informations</h2>
+                <p>Nous ne vendons, n'échangeons ni ne louons vos informations personnelles à des tiers. Vos informations de carte sont partagées uniquement selon les paramètres que vous définissez lorsque vous créez et partagez votre carte.</p>
+                <p>Nous pouvons partager vos informations avec :</p>
+                <ul>
+                    <li>Des prestataires de services qui nous aident à exploiter notre site et à fournir nos services (hébergement, analyse, etc.)</li>
+                    <li>Les autorités légales si required par la loi ou pour protéger nos droits</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Conservation des données</h2>
+                <p>Nous conservons vos informations personnelles aussi longtemps que nécessaire pour fournir nos services et pour nous conformer à nos obligations légales. Si vous souhaitez supprimer votre compte ou vos données, vous pouvez nous contacter à tout moment.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Vos droits</h2>
+                <p>Vous avez le droit de :</p>
+                <ul>
+                    <li>Accéder aux informations personnelles que nous détenons sur vous</li>
+                    <li>Demander la correction de informations inexactes ou incomplètes</li>
+                    <li>Demander la suppression de vos informations personnelles</li>
+                    <li>Vous opposer au traitement de vos informations dans certaines circonstances</li>
+                    <li>Demander la portabilité de vos données</li>
+                </ul>
+                <p>Pour exercer ces droits, veuillez nous contacter à l'adresse ipoteivangael@gmail.com</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Sécurité</h2>
+                <p>Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos informations contre tout accès non autorisé, modification, divulgation ou destruction. Cependant, aucune méthode de transmission sur Internet ou de stockage électronique n'est totalement sécurisée.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Modifications de cette politique</h2>
+                <p>Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Nous vous informerons de tout changement en publiant la nouvelle politique sur cette page et en mettant à jour la date de " dernière mise à jour " en haut de cette politique.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Nous contacter</h2>
+                <p>Si vous avez des questions concernant cette politique de confidentialité ou nos pratiques en matière de protection des données, veuillez nous contacter :</p>
+                <div class="highlight">
+                    <p>Email: ipoteivangael@gmail.com</p>
+                    <p>WhatsApp: +255 050 358 8336</p>
+                </div>
+            </div>
+            
+            <a href="#" class="back-to-top">Retour en haut ↑</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript pour ouvrir et fermer la sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const closeSidebar = document.querySelector('.close-sidebar');
+            const overlay = document.querySelector('.overlay');
+            
+            // Ouvrir la sidebar
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Empêcher le défilement
+            });
+            
+            // Fermer la sidebar
+            function closeSidebarFunc() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = ''; // Rétablir le défilement
+            }
+            
+            closeSidebar.addEventListener('click', closeSidebarFunc);
+            overlay.addEventListener('click', closeSidebarFunc);
+            
+            // Fermer avec la touche Échap
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeSidebarFunc();
+                }
+            });
+            
+            // Retour en haut de page
+            const backToTop = document.querySelector('.back-to-top');
+            if (backToTop) {
+                backToTop.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
