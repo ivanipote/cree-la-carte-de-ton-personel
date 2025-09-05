@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personnalisateur de Cartes d'Équipe</title>
+    <title>Cartes d'Équipe - Design Unique</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,15 +14,31 @@
         }
         
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.8) 0%, rgba(37, 117, 252, 0.8) 100%);
             color: #333;
             padding: 20px;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+            background-size: cover;
+            filter: blur(10px) brightness(0.7);
+            z-index: -1;
         }
         
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         header {
@@ -45,51 +61,73 @@
             color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Navigation par onglets */
-        .tabs {
+        /* Navigation par icônes en bas */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            background: white;
-            border-radius: 15px 15px 0 0;
-            overflow: hidden;
-            margin-bottom: 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
         }
         
-        .tab-button {
-            flex: 1;
-            padding: 18px;
-            background: #f8f9fa;
-            border: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #6c757d;
-            cursor: pointer;
+        .nav-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 70px;
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
             transition: all 0.3s ease;
-            text-align: center;
+            margin: 0 5px;
         }
         
-        .tab-button:hover {
-            background: #e9ecef;
-            color: #495057;
+        .nav-icon i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
         }
         
-        .tab-button.active {
-            background: white;
-            color: #3498db;
-            border-bottom: 3px solid #3498db;
+        .nav-icon span {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .nav-icon:hover, .nav-icon.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        /* Contenu principal avec effet de verre */
+        .main-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-bottom: 100px;
         }
         
         .tab-content {
             display: none;
-            background: white;
-            border-radius: 0 0 15px 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            margin-bottom: 40px;
         }
         
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .app-container {
@@ -101,6 +139,12 @@
         .customization-panel {
             flex: 1;
             min-width: 300px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
         
         .preview-area {
@@ -120,21 +164,28 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #2c3e50;
+            color: white;
         }
         
         input, textarea, select {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #ddd;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
         
         input:focus, textarea:focus, select:focus {
             border-color: #3498db;
             outline: none;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         textarea {
@@ -155,8 +206,8 @@
             border-radius: 50%;
             cursor: pointer;
             transition: transform 0.3s;
-            border: 3px solid white;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
         
         .color-option:hover {
@@ -165,11 +216,11 @@
         
         .color-option.active {
             transform: scale(1.15);
-            border: 3px solid #2c3e50;
+            border: 3px solid white;
         }
         
         .btn {
-            background: #3498db;
+            background: rgba(52, 152, 219, 0.8);
             color: white;
             border: none;
             padding: 12px 25px;
@@ -177,43 +228,50 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
             display: inline-block;
             margin-top: 10px;
             margin-right: 10px;
+            backdrop-filter: blur(5px);
         }
         
         .btn:hover {
-            background: #2980b9;
+            background: rgba(41, 128, 185, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .btn-download {
-            background: #2ecc71;
+            background: rgba(46, 204, 113, 0.8);
         }
         
         .btn-download:hover {
-            background: #27ae60;
+            background: rgba(39, 174, 96, 0.9);
         }
         
         .btn-library {
-            background: #9b59b6;
+            background: rgba(155, 89, 182, 0.8);
         }
         
         .btn-library:hover {
-            background: #8e44ad;
+            background: rgba(142, 68, 173, 0.9);
         }
         
+        /* Carte avec effet de verre */
         .card {
-            background: white;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
             overflow: hidden;
             width: 320px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
         
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         .card-header {
@@ -234,7 +292,7 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 4px solid white;
+            border: 4px solid rgba(255, 255, 255, 0.5);
             object-fit: cover;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
@@ -248,26 +306,33 @@
             font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 5px;
-            color: #2c3e50;
+            color: white;
         }
         
         .card-role {
-            color: #e74c3c;
+            color: #ff7979;
             font-weight: 600;
             margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
         
         .card-desc {
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.5;
             margin-bottom: 20px;
         }
         
+        /* Barre sociale avec effet de verre */
         .card-social {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-top: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .social-icon {
@@ -281,6 +346,7 @@
             font-size: 18px;
             transition: transform 0.3s ease;
             text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .social-icon:hover {
@@ -301,21 +367,24 @@
         }
         
         .instructions {
-            background: white;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
             padding: 25px;
             margin-top: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
         
         .instructions h2 {
-            color: #2c3e50;
+            color: white;
             margin-bottom: 15px;
         }
         
         .instructions ol {
             margin-left: 20px;
             line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
         }
         
         .instructions li {
@@ -323,15 +392,17 @@
         }
         
         .library {
-            background: white;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
             padding: 25px;
             margin-top: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
         
         .library h2 {
-            color: #2c3e50;
+            color: white;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -344,18 +415,19 @@
         }
         
         .library-card {
-            background: white;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .library-card:hover {
             transform: translateY(-5px);
-            border-color: #3498db;
+            border-color: rgba(255, 255, 255, 0.3);
         }
         
         .library-card .card-header {
@@ -400,16 +472,17 @@
         
         .file-label {
             padding: 10px 15px;
-            background: #3498db;
+            background: rgba(52, 152, 219, 0.8);
             color: white;
             border-radius: 8px;
             cursor: pointer;
             transition: background 0.3s;
             display: inline-block;
+            backdrop-filter: blur(5px);
         }
         
         .file-label:hover {
-            background: #2980b9;
+            background: rgba(41, 128, 185, 0.9);
         }
         
         #avatar-file {
@@ -418,7 +491,7 @@
         
         .file-name {
             font-size: 0.9rem;
-            color: #7f8c8d;
+            color: rgba(255, 255, 255, 0.8);
         }
         
         .social-inputs {
@@ -437,23 +510,21 @@
         .social-input-group i {
             font-size: 1.5rem;
             width: 30px;
+            color: white;
         }
         
-        .social-input-group .whatsapp { color: #25D366; background: none; }
-        .social-input-group .email { color: #D44638; background: none; }
-        .social-input-group .snapchat { color: #FFFC00; background: none; }
-        .social-input-group .tiktok { color: #000000; background: none; }
-        
         .download-options {
-            background: white;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
             padding: 25px;
             margin-top: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
         
         .download-options h2 {
-            color: #2c3e50;
+            color: white;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -466,18 +537,22 @@
         }
         
         .format-option {
-            background: #f8f9fa;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
             padding: 20px;
             width: 200px;
             text-align: center;
             transition: transform 0.3s ease;
             cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
         }
         
         .format-option:hover {
             transform: translateY(-5px);
-            background: #e9ecef;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
         }
         
         .format-option i {
@@ -513,10 +588,6 @@
                 grid-template-columns: 1fr;
             }
             
-            .tabs {
-                flex-direction: column;
-            }
-            
             .format-options {
                 flex-direction: column;
                 align-items: center;
@@ -525,229 +596,254 @@
             .format-option {
                 width: 100%;
             }
+            
+            .bottom-nav {
+                width: 90%;
+                overflow-x: auto;
+                justify-content: center;
+            }
+            
+            .nav-icon {
+                width: 70px;
+                height: 60px;
+            }
+            
+            .nav-icon span {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Personnalisateur de Cartes d'Équipe</h1>
-            <p class="description">Créez, personnalisez et téléchargez des cartes pour les membres de votre équipe</p>
+            <h1>Cartes d'Équipe Design</h1>
+            <p class="description">Créez des cartes d'équipe élégantes avec des effets de verre et des liens sociaux</p>
         </header>
         
-        <!-- Barre de navigation par onglets -->
-        <div class="tabs">
-            <button class="tab-button active" onclick="openTab('creation')">
-                <i class="fas fa-plus-circle"></i> Création
-            </button>
-            <button class="tab-button" onclick="openTab('library')">
-                <i class="fas fa-book"></i> Bibliothèque
-            </button>
-            <button class="tab-button" onclick="openTab('download')">
-                <i class="fas fa-download"></i> Téléchargement
-            </button>
-            <button class="tab-button" onclick="openTab('instructions')">
-                <i class="fas fa-question-circle"></i> Instructions
-            </button>
-        </div>
-        
-        <!-- Onglet Création -->
-        <div id="creation" class="tab-content active">
-            <div class="app-container">
-                <div class="customization-panel">
-                    <h2>Personnalisation</h2>
-                    
-                    <div class="form-group">
-                        <label for="name">Nom et Prénom</label>
-                        <input type="text" id="name" placeholder="Ex: Sophie Martin" value="Sophie Martin">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="role">Poste/Rôle</label>
-                        <input type="text" id="role" placeholder="Ex: Développeuse Front-end" value="Développeuse Front-end">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea id="description" placeholder="Décrivez le membre de l'équipe...">Spécialiste en interfaces utilisateur réactives et expériences utilisateur optimisées avec 5 ans d'expérience.</textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="avatar">Avatar</label>
-                        <input type="text" id="avatar" placeholder="Collez l'URL d'une image" value="https://randomuser.me/api/portraits/women/44.jpg">
+        <div class="main-content">
+            <!-- Onglet Création -->
+            <div id="creation" class="tab-content active">
+                <div class="app-container">
+                    <div class="customization-panel">
+                        <h2 style="color: white;">Personnalisation</h2>
                         
-                        <div class="file-upload">
-                            <label for="avatar-file" class="file-label">
-                                <i class="fas fa-upload"></i> Charger une image
-                            </label>
-                            <input type="file" id="avatar-file" accept="image/*">
-                            <span class="file-name" id="file-name">Aucun fichier choisi</span>
+                        <div class="form-group">
+                            <label for="name">Nom et Prénom</label>
+                            <input type="text" id="name" placeholder="Ex: Sophie Martin" value="Sophie Martin">
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Couleur de fond</label>
-                        <div class="color-picker">
-                            <div class="color-option active" style="background: linear-gradient(45deg, #3498db, #2c3e50);" data-color="blue"></div>
-                            <div class="color-option" style="background: linear-gradient(45deg, #e74c3c, #c0392b);" data-color="red"></div>
-                            <div class="color-option" style="background: linear-gradient(45deg, #2ecc71, #27ae60);" data-color="green"></div>
-                            <div class="color-option" style="background: linear-gradient(45deg, #9b59b6, #8e44ad);" data-color="purple"></div>
-                            <div class="color-option" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4);" data-color="pink"></div>
-                            <div class="color-option" style="background: linear-gradient(45deg, #a1c4fd, #c2e9fb);" data-color="lightblue"></div>
+                        
+                        <div class="form-group">
+                            <label for="role">Poste/Rôle</label>
+                            <input type="text" id="role" placeholder="Ex: Développeuse Front-end" value="Développeuse Front-end">
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="template">Modèle de Carte</label>
-                        <select id="template">
-                            <option value="default">Défaut</option>
-                            <option value="modern">Moderne</option>
-                            <option value="minimal">Minimaliste</option>
-                            <option value="corporate">Corporate</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Réseaux Sociaux</label>
-                        <div class="social-inputs">
-                            <div class="social-input-group">
-                                <i class="fab fa-whatsapp whatsapp"></i>
-                                <input type="text" id="whatsapp-link" placeholder="Numéro WhatsApp (ex: 33612345678)" value="">
-                            </div>
-                            <div class="social-input-group">
-                                <i class="fas fa-envelope email"></i>
-                                <input type="text" id="email-link" placeholder="Adresse email (ex: contact@example.com)" value="">
-                            </div>
-                            <div class="social-input-group">
-                                <i class="fab fa-snapchat snapchat"></i>
-                                <input type="text" id="snapchat-link" placeholder="Nom d'utilisateur Snapchat" value="">
-                            </div>
-                            <div class="social-input-group">
-                                <i class="fab fa-tiktok tiktok"></i>
-                                <input type="text" id="tiktok-link" placeholder="Nom d'utilisateur TikTok" value="">
+                        
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" placeholder="Décrivez le membre de l'équipe...">Spécialiste en interfaces utilisateur réactives et expériences utilisateur optimisées avec 5 ans d'expérience.</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="avatar">Avatar</label>
+                            <input type="text" id="avatar" placeholder="Collez l'URL d'une image" value="https://randomuser.me/api/portraits/women/44.jpg">
+                            
+                            <div class="file-upload">
+                                <label for="avatar-file" class="file-label">
+                                    <i class="fas fa-upload"></i> Charger une image
+                                </label>
+                                <input type="file" id="avatar-file" accept="image/*">
+                                <span class="file-name" id="file-name">Aucun fichier choisi</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <button class="btn" onclick="applyCustomization()">
-                        <i class="fas fa-sync-alt"></i> Appliquer les modifications
-                    </button>
-                    
-                    <button class="btn btn-library" onclick="saveToLibrary()">
-                        <i class="fas fa-save"></i> Sauvegarder dans la bibliothèque
-                    </button>
-                </div>
-                
-                <div class="preview-area">
-                    <div class="card" id="previewCard">
-                        <div class="card-header">
-                            <div class="card-bg" id="cardBg" style="background: linear-gradient(45deg, #3498db, #2c3e50);">
-                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie Martin" class="card-avatar" id="previewAvatar">
+                        
+                        <div class="form-group">
+                            <label>Couleur de fond</label>
+                            <div class="color-picker">
+                                <div class="color-option active" style="background: linear-gradient(45deg, #3498db, #2c3e50);" data-color="blue"></div>
+                                <div class="color-option" style="background: linear-gradient(45deg, #e74c3c, #c0392b);" data-color="red"></div>
+                                <div class="color-option" style="background: linear-gradient(45deg, #2ecc71, #27ae60);" data-color="green"></div>
+                                <div class="color-option" style="background: linear-gradient(45deg, #9b59b6, #8e44ad);" data-color="purple"></div>
+                                <div class="color-option" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4);" data-color="pink"></div>
+                                <div class="color-option" style="background: linear-gradient(45deg, #a1c4fd, #c2e9fb);" data-color="lightblue"></div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <h2 class="card-name" id="previewName">Sophie Martin</h2>
-                            <p class="card-role" id="previewRole">Développeuse Front-end</p>
-                            <p class="card-desc" id="previewDesc">Spécialiste en interfaces utilisateur réactives et expériences utilisateur optimisées avec 5 ans d'expérience.</p>
-                            <div class="card-social">
-                                <a href="#" class="social-icon whatsapp" id="preview-whatsapp"><i class="fab fa-whatsapp"></i></a>
-                                <a href="#" class="social-icon email" id="preview-email"><i class="far fa-envelope"></i></a>
-                                <a href="#" class="social-icon snapchat" id="preview-snapchat"><i class="fab fa-snapchat"></i></a>
-                                <a href="#" class="social-icon tiktok" id="preview-tiktok"><i class="fab fa-tiktok"></i></a>
+                        
+                        <div class="form-group">
+                            <label for="template">Modèle de Carte</label>
+                            <select id="template">
+                                <option value="default">Défaut</option>
+                                <option value="modern">Moderne</option>
+                                <option value="minimal">Minimaliste</option>
+                                <option value="corporate">Corporate</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Réseaux Sociaux</label>
+                            <div class="social-inputs">
+                                <div class="social-input-group">
+                                    <i class="fab fa-whatsapp whatsapp"></i>
+                                    <input type="text" id="whatsapp-link" placeholder="Numéro WhatsApp (ex: 33612345678)" value="">
+                                </div>
+                                <div class="social-input-group">
+                                    <i class="fas fa-envelope email"></i>
+                                    <input type="text" id="email-link" placeholder="Adresse email (ex: contact@example.com)" value="">
+                                </div>
+                                <div class="social-input-group">
+                                    <i class="fab fa-snapchat snapchat"></i>
+                                    <input type="text" id="snapchat-link" placeholder="Nom d'utilisateur Snapchat" value="">
+                                </div>
+                                <div class="social-input-group">
+                                    <i class="fab fa-tiktok tiktok"></i>
+                                    <input type="text" id="tiktok-link" placeholder="Nom d'utilisateur TikTok" value="">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="action-buttons">
+                        
+                        <button class="btn" onclick="applyCustomization()">
+                            <i class="fas fa-sync-alt"></i> Appliquer les modifications
+                        </button>
+                        
                         <button class="btn btn-library" onclick="saveToLibrary()">
                             <i class="fas fa-save"></i> Sauvegarder dans la bibliothèque
                         </button>
                     </div>
+                    
+                    <div class="preview-area">
+                        <div class="card" id="previewCard">
+                            <div class="card-header">
+                                <div class="card-bg" id="cardBg" style="background: linear-gradient(45deg, #3498db, #2c3e50);">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie Martin" class="card-avatar" id="previewAvatar">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h2 class="card-name" id="previewName">Sophie Martin</h2>
+                                <p class="card-role" id="previewRole">Développeuse Front-end</p>
+                                <p class="card-desc" id="previewDesc">Spécialiste en interfaces utilisateur réactives et expériences utilisateur optimisées avec 5 ans d'expérience.</p>
+                                <div class="card-social">
+                                    <a href="#" class="social-icon whatsapp" id="preview-whatsapp"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="#" class="social-icon email" id="preview-email"><i class="far fa-envelope"></i></a>
+                                    <a href="#" class="social-icon snapchat" id="preview-snapchat"><i class="fab fa-snapchat"></i></a>
+                                    <a href="#" class="social-icon tiktok" id="preview-tiktok"><i class="fab fa-tiktok"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn btn-download" onclick="downloadHTML()">
+                                <i class="fas fa-download"></i> Télécharger la carte
+                            </button>
+                            
+                            <button class="btn btn-library" onclick="saveToLibrary()">
+                                <i class="fas fa-save"></i> Sauvegarder dans la bibliothèque
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Onglet Bibliothèque -->
-        <div id="library" class="tab-content">
-            <div class="library">
-                <h2>Bibliothèque de Cartes</h2>
-                <p style="text-align: center; margin-bottom: 20px; color: #7f8c8d;">Retrouvez ici toutes vos cartes sauvegardées</p>
-                <div class="cards-grid" id="cardsLibrary">
-                    <!-- Les cartes sauvegardées apparaîtront ici -->
+            
+            <!-- Onglet Bibliothèque -->
+            <div id="library" class="tab-content">
+                <div class="library">
+                    <h2>Bibliothèque de Cartes</h2>
+                    <p style="text-align: center; margin-bottom: 20px; color: rgba(255, 255, 255, 0.8);">Retrouvez ici toutes vos cartes sauvegardées</p>
+                    <div class="cards-grid" id="cardsLibrary">
+                        <!-- Les cartes sauvegardées apparaîtront ici -->
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Onglet Téléchargement -->
-        <div id="download" class="tab-content">
-            <div class="download-options">
-                <h2>Options de Téléchargement</h2>
-                <p style="text-align: center; margin-bottom: 30px; color: #7f8c8d;">
-                    Choisissez le format qui correspond le mieux à vos besoins
-                </p>
-                
-                <div class="format-options">
-                    <div class="format-option html" onclick="downloadHTML()">
-                        <i class="fab fa-html5"></i>
-                        <h3>Format HTML</h3>
-                        <p>Préserve tous les liens et l'interactivité. Parfait pour l'envoi par email ou l'intégration web.</p>
+            
+            <!-- Onglet Téléchargement -->
+            <div id="download" class="tab-content">
+                <div class="download-options">
+                    <h2>Options de Téléchargement</h2>
+                    <p style="text-align: center; margin-bottom: 30px; color: rgba(255, 255, 255, 0.8);">
+                        Choisissez le format qui correspond le mieux à vos besoins
+                    </p>
+                    
+                    <div class="format-options">
+                        <div class="format-option html" onclick="downloadHTML()">
+                            <i class="fab fa-html5"></i>
+                            <h3>Format HTML</h3>
+                            <p>Préserve tous les liens et l'interactivité. Parfait pour l'envoi par email ou l'intégration web.</p>
+                        </div>
+                        
+                        <div class="format-option pdf" onclick="downloadPDF()">
+                            <i class="fas fa-file-pdf"></i>
+                            <h3>Format PDF</h3>
+                            <p>Idéal pour l'impression. Les liens seront cliquables dans la plupart des lecteurs PDF.</p>
+                        </div>
+                        
+                        <div class="format-option image" onclick="downloadImage()">
+                            <i class="fas fa-image"></i>
+                            <h3>Format Image + QR</h3>
+                            <p>Génère une image avec un QR code pointant vers une version web de votre carte.</p>
+                        </div>
                     </div>
                     
-                    <div class="format-option pdf" onclick="downloadPDF()">
-                        <i class="fas fa-file-pdf"></i>
-                        <h3>Format PDF</h3>
-                        <p>Idéal pour l'impression. Les liens seront cliquables dans la plupart des lecteurs PDF.</p>
-                    </div>
-                    
-                    <div class="format-option image" onclick="downloadImage()">
-                        <i class="fas fa-image"></i>
-                        <h3>Format Image + QR</h3>
-                        <p>Génère une image avec un QR code pointant vers une version web de votre carte.</p>
+                    <div style="margin-top: 30px; text-align: center;">
+                        <button class="btn btn-download" onclick="downloadHTML()">
+                            <i class="fas fa-download"></i> Télécharger au format HTML
+                        </button>
                     </div>
                 </div>
-                
-                <div style="margin-top: 30px; text-align: center;">
-                    <button class="btn btn-download" onclick="downloadHTML()">
-                        <i class="fas fa-download"></i> Télécharger au format HTML
-                    </button>
+            </div>
+            
+            <!-- Onglet Instructions -->
+            <div id="instructions" class="tab-content">
+                <div class="instructions">
+                    <h2>Comment personnaliser votre carte</h2>
+                    <ol>
+                        <li>Modifiez les champs de texte pour changer le nom, le poste et la description</li>
+                        <li>Collez l'URL d'une image ou chargez une image depuis votre appareil</li>
+                        <li>Choisissez une couleur de fond parmi les options proposées</li>
+                        <li>Sélectionnez un modèle de carte différent si vous le souhaitez</li>
+                        <li>Ajoutez vos liens vers WhatsApp, Email, Snapchat et TikTok</li>
+                        <li>Cliquez sur "Appliquer les modifications" pour mettre à jour la carte</li>
+                        <li>Utilisez "Sauvegarder dans la bibliothèque" pour l'ajouter à votre collection</li>
+                        <li>Allez dans l'onglet "Téléchargement" pour exporter votre carte</li>
+                    </ol>
+                    
+                    <h2 style="margin-top: 30px;">Formats de téléchargement</h2>
+                    <ul>
+                        <li><strong>HTML</strong>: Préserve tous les liens actifs. Parfait pour partager par email ou intégrer à un site web.</li>
+                        <li><strong>PDF</strong>: Idéal pour imprimer. Les liens seront cliquables dans la plupart des visionneuses PDF.</li>
+                        <li><strong>Image + QR Code</strong>: Génère une image avec un QR code qui redirige vers une version web de votre carte.</li>
+                    </ul>
+                    
+                    <h2 style="margin-top: 30px;">Comment utiliser les réseaux sociaux</h2>
+                    <ul>
+                        <li><strong>WhatsApp</strong>: Entrez le numéro de téléphone au format international (ex: 33612345678)</li>
+                        <li><strong>Email</strong>: Entrez l'adresse email complète (ex: contact@example.com)</li>
+                        <li><strong>Snapchat</strong>: Entrez votre nom d'utilisateur Snapchat</li>
+                        <li><strong>TikTok</strong>: Entrez votre nom d'utilisateur TikTok</li>
+                    </ul>
                 </div>
             </div>
         </div>
         
-        <!-- Onglet Instructions -->
-        <div id="instructions" class="tab-content">
-            <div class="instructions">
-                <h2>Comment personnaliser votre carte</h2>
-                <ol>
-                    <li>Modifiez les champs de texte pour changer le nom, le poste et la description</li>
-                    <li>Collez l'URL d'une image ou chargez une image depuis votre appareil</li>
-                    <li>Choisissez une couleur de fond parmi les options proposées</li>
-                    <li>Sélectionnez un modèle de carte différent si vous le souhaitez</li>
-                    <li>Ajoutez vos liens vers WhatsApp, Email, Snapchat et TikTok</li>
-                    <li>Cliquez sur "Appliquer les modifications" pour mettre à jour la carte</li>
-                    <li>Utilisez "Sauvegarder dans la bibliothèque" pour l'ajouter à votre collection</li>
-                    <li>Allez dans l'onglet "Téléchargement" pour exporter votre carte</li>
-                </ol>
-                
-                <h2 style="margin-top: 30px;">Formats de téléchargement</h2>
-                <ul>
-                    <li><strong>HTML</strong>: Préserve tous les liens actifs. Parfait pour partager par email ou intégrer à un site web.</li>
-                    <li><strong>PDF</strong>: Idéal pour imprimer. Les liens seront cliquables dans la plupart des visionneuses PDF.</li>
-                    <li><strong>Image + QR Code</strong>: Génère une image avec un QR code qui redirige vers une version web de votre carte.</li>
-                </ul>
-                
-                <h2 style="margin-top: 30px;">Comment utiliser les réseaux sociaux</h2>
-                <ul>
-                    <li><strong>WhatsApp</strong>: Entrez le numéro de téléphone au format international (ex: 33612345678)</li>
-                    <li><strong>Email</strong>: Entrez l'adresse email complète (ex: contact@example.com)</li>
-                    <li><strong>Snapchat</strong>: Entrez votre nom d'utilisateur Snapchat</li>
-                    <li><strong>TikTok</strong>: Entrez votre nom d'utilisateur TikTok</li>
-                </ul>
-            </div>
+        <!-- Navigation par icônes en bas -->
+        <div class="bottom-nav">
+            <a href="#" class="nav-icon active" onclick="openTab('creation'); return false;">
+                <i class="fas fa-plus-circle"></i>
+                <span>Création</span>
+            </a>
+            <a href="#" class="nav-icon" onclick="openTab('library'); return false;">
+                <i class="fas fa-book"></i>
+                <span>Bibliothèque</span>
+            </a>
+            <a href="#" class="nav-icon" onclick="openTab('download'); return false;">
+                <i class="fas fa-download"></i>
+                <span>Télécharger</span>
+            </a>
+            <a href="#" class="nav-icon" onclick="openTab('instructions'); return false;">
+                <i class="fas fa-question-circle"></i>
+                <span>Aide</span>
+            </a>
         </div>
         
         <footer>
-            <p>© 2023 Personnalisateur de Cartes d'Équipe. Tous droits réservés.</p>
+            <p>© 2023 Cartes d'Équipe Design. Tous droits réservés.</p>
         </footer>
     </div>
 
@@ -763,16 +859,16 @@
                 tab.classList.remove('active');
             });
             
-            // Désactiver tous les boutons d'onglet
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
+            // Désactiver tous les boutons de navigation
+            document.querySelectorAll('.nav-icon').forEach(icon => {
+                icon.classList.remove('active');
             });
             
             // Afficher l'onglet sélectionné
             document.getElementById(tabName).classList.add('active');
             
             // Activer le bouton correspondant
-            document.querySelector(`.tab-button[onclick="openTab('${tabName}')"]`).classList.add('active');
+            document.querySelector(`.nav-icon[onclick="openTab('${tabName}');"]`).classList.add('active');
             
             // Mettre à jour l'onglet courant
             currentTab = tabName;
@@ -1042,7 +1138,7 @@
             libraryContainer.innerHTML = '';
             
             if (savedCards.length === 0) {
-                libraryContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #7f8c8d;">Aucune carte sauvegardée pour le moment</p>';
+                libraryContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: rgba(255, 255, 255, 0.8);">Aucune carte sauvegardée pour le moment</p>';
                 return;
             }
             
