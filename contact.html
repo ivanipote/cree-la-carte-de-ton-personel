@@ -262,7 +262,8 @@
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
@@ -273,7 +274,8 @@
         }
         
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             border-color: #4a69bd;
             outline: none;
         }
@@ -417,7 +419,7 @@
                     
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>France</span>
+                        <span>Côte d'Ivoire, Abidjan</span>
                     </div>
                     
                     <div class="contact-item">
@@ -431,12 +433,6 @@
                     <a href="https://wa.me/2550503588336" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                     </a>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-snapchat-ghost"></i>
-                    </a>
                     <a href="mailto:ipoteivangael@gmail.com">
                         <i class="far fa-envelope"></i>
                     </a>
@@ -444,7 +440,7 @@
             </div>
             
             <div class="contact-form">
-                <h2>Envoyez-nous un message</h2>
+                <h2>Envoyez-nous un message via WhatsApp</h2>
                 <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Nom complet</label>
@@ -453,20 +449,39 @@
                     
                     <div class="form-group">
                         <label for="email">Adresse email</label>
-                        <input type="email" id="email" required>
+                        <input type="email" id="email">
                     </div>
                     
                     <div class="form-group">
                         <label for="subject">Sujet</label>
-                        <input type="text" id="subject" required>
+                        <select id="subject" required>
+                            <option value="">Sélectionnez un sujet</option>
+                            <option value="Demande d'information">Demande d'information</option>
+                            <option value="Création de carte">Création de carte</option>
+                            <option value="Problème technique">Problème technique</option>
+                            <option value="Collaboration">Collaboration</option>
+                            <option value="Autre">Autre</option>
+                        </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" required></textarea>
+                        <label for="politesse">Formule de politesse</label>
+                        <select id="politesse" required>
+                            <option value="">Choisissez une formule</option>
+                            <option value="Bonjour,">Bonjour,</option>
+                            <option value="Bonjour, je vous contacte concernant">Bonjour, je vous contacte concernant</option>
+                            <option value="Merci de bien vouloir">Merci de bien vouloir</option>
+                            <option value="Je souhaiterais">Je souhaiterais</option>
+                            <option value="Pourriez-vous">Pourriez-vous</option>
+                        </select>
                     </div>
                     
-                    <button type="submit" class="btn">Envoyer le message</button>
+                    <div class="form-group">
+                        <label for="message">Votre message</label>
+                        <textarea id="message" required placeholder="Veuillez saisir votre message ici..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Envoyer via WhatsApp</button>
                 </form>
             </div>
         </div>
@@ -475,7 +490,7 @@
             <h2>Notre localisation</h2>
             <div class="map-placeholder">
                 <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-right: 15px;"></i>
-                <span>Carte interactive (Google Maps)</span>
+                <span>Côte d'Ivoire, Abidjan</span>
             </div>
         </div>
     </div>
@@ -512,12 +527,29 @@
                 }
             });
             
-            // Gestion de l'envoi du formulaire
+            // Gestion de l'envoi du formulaire vers WhatsApp
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    alert('Merci pour votre message! Nous vous répondrons très prochainement.');
+                    
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const politesse = document.getElementById('politesse').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Construction du message pour WhatsApp
+                    let whatsappMessage = `*Nouveau message de contact*%0A%0A`;
+                    whatsappMessage += `*Nom:* ${name}%0A`;
+                    if (email) whatsappMessage += `*Email:* ${email}%0A`;
+                    whatsappMessage += `*Sujet:* ${subject}%0A%0A`;
+                    whatsappMessage += `*Message:*%0A${politesse} ${message}`;
+                    
+                    // Redirection vers WhatsApp
+                    window.open(`https://wa.me/2550503588336?text=${whatsappMessage}`, '_blank');
+                    
+                    // Réinitialisation du formulaire
                     contactForm.reset();
                 });
             }
